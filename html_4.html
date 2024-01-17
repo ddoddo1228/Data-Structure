@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sum of Numbers</title>
+    <style>
+        .blue-text {
+            color: blue;
+        }
+
+        .green-background {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="blue-text" id="numbers"></div>
+    <div id="sum"></div>
+
+    <script>
+        function myFunction(start, end, callback) {
+            var sum = 0;
+            var numbers = "";
+
+            for (var i = start; i <= end; i++) {
+                numbers += i;
+                if (i < end) {
+                    numbers += " ";
+                }
+                sum += i;
+            }
+
+            document.getElementById("numbers").innerHTML = numbers;
+
+            if (callback && typeof callback === 'function') {
+                callback(sum);
+            }
+        }
+
+        myFunction(1, 10, function (sum) {
+            document.getElementById("sum").innerHTML = "<span class='green-background'>1-10까지의 합: " + sum + "</span>";
+        });
+    </script>
+</body>
+</html>

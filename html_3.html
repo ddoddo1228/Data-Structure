@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 정보</title>
+    <style>
+        .blue-text {
+            color: blue;
+        }
+        .green-text {
+            color: green;
+        }
+        .red-underline {
+            text-decoration: underline double red;
+        }
+        .red-border {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="product-list">
+        <!-- 제품 정보를 여기에 표시할 것입니다. -->
+    </div>
+
+    <script>
+        // JavaScript 코드를 작성합니다.
+
+        class Product {
+            constructor(name, price, quantity, salePrice) {
+                this.name = name;
+                this.price = price;
+                this.quantity = quantity;
+                this.salePrice = salePrice;
+            }
+
+            displayProduct() {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('blue-text');
+
+                const priceText = this.price.toString();
+                const quantityText = this.quantity.toString();
+                const salePriceText = this.salePrice.toString();
+
+                const priceWithRedUnderline = priceText.split(' ').map(number => `<span class="green-text red-underline">${number}</span>`).join(' ');
+                const quantityWithRedUnderline = quantityText.split(' ').map(number => `<span class="green-text red-underline">${number}</span>`).join(' ');
+                const salePriceWithRedBorder = `<span class="blue-text red-border">${salePriceText}</span>`;
+
+                productDiv.innerHTML = `
+                    제품명: ${this.name},
+                    단가: ${priceWithRedUnderline},
+                    수량: ${quantityWithRedUnderline},
+                    판매가격은 ${salePriceWithRedBorder}원 입니다
+                `;
+
+                document.getElementById('product-list').appendChild(productDiv);
+            }
+        }
+
+        // 제품 정보 생성
+        const products = [
+            new Product("새우깡", 3500, 15, 4000),
+            new Product("감자깡", 2800, 10, 3000),
+            new Product("몽쉘통통", 3000, 5, 3200),
+            new Product("꿀꽈배기", 2600, 10, 2800)
+        ];
+
+        // 제품 정보를 표시
+        products.forEach(product => {
+            product.displayProduct();
+        });
+    </script>
+</body>
+</html>
